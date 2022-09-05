@@ -3,7 +3,7 @@ import logger from "morgan";
 import * as path from "path";
 
 import { errorHandler, errorNotFoundHandler } from "./middlewares/errorHandler";
-
+import bodyParser from "body-parser";
 // Routes
 import { index } from "./routes/index";
 // Create Express server
@@ -15,6 +15,7 @@ app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "pug");
 
 app.use(logger("dev"));
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "../public")));
 app.use("/", index);
